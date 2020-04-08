@@ -1,0 +1,14 @@
+body{
+    margin:0px;
+    padding:0px;
+    font-size: 16px;
+}
+#div1{
+    background-color: #f00;
+    width: 100px;
+    height: 100px;
+}
+p.special{
+    background: #09f;
+    color:#fff;
+}
