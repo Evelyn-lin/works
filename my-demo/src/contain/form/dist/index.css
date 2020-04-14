@@ -1,0 +1,118 @@
+.form {
+  height: 100%;
+  width: 90%;
+  padding-top: 100px;
+  margin: auto;
+  /* 容器样式 */
+  /* 输入框、链接按钮样式 */
+  /* 按钮背景颜色 */
+  /* 提交按钮样式 */
+  /* 两列布局 */
+  /* 清除浮动 */
+  /* vertical line */
+  /* 水平方向的文本 */
+  /* 大屏幕隐藏文本 */
+  /* 底部容器 */
+  /* 响应式设计 */
+}
+.form .form_head {
+  position: relative;
+  border-radius: 5px;
+  background-color: #d1d1d1;
+  padding: 20px;
+}
+.form h2 {
+  text-align: center;
+}
+.form .btn,
+.form input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none;
+}
+.form .btn:hover,
+.form input:hover {
+  opacity: 1;
+}
+.form .fb {
+  background-color: #3B5998;
+  color: white;
+}
+.form .twitter {
+  background-color: #55ACEE;
+  color: white;
+}
+.form .google {
+  background-color: #dd4b39;
+  color: white;
+}
+.form input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+.form input[type=submit]:hover {
+  background-color: #45a049;
+}
+.form .col {
+  float: left;
+  width: 50%;
+  margin: auto;
+  padding: 0 50px;
+  margin-top: 6px;
+}
+.form .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.form .vl {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  border: 2px solid #ddd;
+  height: 175px;
+}
+.form .vl-innertext {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  padding: 8px 10px;
+}
+.form .hide-md-lg {
+  display: none;
+}
+.form .bottom-container {
+  text-align: center;
+  background-color: #666;
+  border-radius: 0px 0px 4px 4px;
+}
+@media screen and (max-width: 650px) {
+  .form .col {
+    width: 100%;
+    margin-top: 0;
+  }
+  .form .vl {
+    display: none;
+  }
+  .form .hide-md-lg {
+    display: block;
+    text-align: center;
+  }
+  .form .form {
+    padding-top: 30px;
+    height: 100%;
+    width: 90%;
+    margin: auto;
+  }
+}

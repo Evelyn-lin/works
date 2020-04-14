@@ -1,0 +1,40 @@
+@import './loading.less';
+@import './default.less';
+
+ul li{
+    list-style: none;
+}
+.clearfix{
+    &::after{
+        content:'';
+        clear:both;
+        display: block;
+        visibility: hidden;
+    }
+}
+.container{
+    .nav-left{
+        background-color: #001529;
+        color: #ffffff;
+        height: calc(100vh);
+    }
+    .main{
+        background-color: @colorL;
+        height: 100vh;
+        overflow: auto;
+    }
+    .content{
+        position: relative;
+        padding: 20px;
+    }
+}
+.content-wrap{
+    background-color: #ffffff;
+    border:1px solid #e8e8e8;
+    margin-top: -1px;
+}
+.operate_wrap{
+    button{
+        margin-right: 10px;
+    }
+}

@@ -1,0 +1,28 @@
+{
+  "code": 0,
+  "message": "",
+  "result": {
+    "list": [{
+      "id": 1,
+      "username": "Jack",
+      "sex": 1,
+      "age": 0,
+      "state": 1,
+      "interest": 1,
+      "isMarried1": 1,
+      "isMarried2": 1,
+      "isMarried3": 1,
+      "isMarried4": 1,
+      "isMarried5": 1,
+      "isMarried6": 1,
+      "isMarried7": 1,
+      "isMarried8": 1,
+      "birthday": "2000-01-01",
+      "address": "北京市海淀区",
+      "time": "09:00:00"
+    }],
+    page: 2,
+    page_size: 5,
+    total_count: 30
+  }
+}

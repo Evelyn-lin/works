@@ -1,0 +1,38 @@
+.loading {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.loading div {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 10px solid rebeccapurple;
+  margin: 0 20px;
+  float: left;
+}
+.loading .loading1 {
+  border-color: rebeccapurple #e2e0e0 #e2e0e0 #e2e0e0;
+  animation: loading 2s linear infinite;
+}
+.loading .loading2 {
+  border-color: rebeccapurple #e2e0e0 rebeccapurple #e2e0e0;
+  animation: loading 2s linear infinite;
+}
+.loading .loading3 {
+  border-color: rebeccapurple #f33f3f #613030 #e2e0e0;
+  animation: loading 2s linear infinite;
+}
+.loading .loading4 {
+  border-color: rebeccapurple #f33f3f #613030 #188dbb;
+  animation: loading 2s linear infinite;
+}
+@keyframes loading {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
