@@ -1,0 +1,33 @@
+.section {
+    .wave{
+        h2{
+            position: relative;
+            float: left;
+            margin-left: 45%;
+            margin-top: 15%;
+        }
+        h2:before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            height: 0.25em;
+            width: 100%;
+
+            background:
+                linear-gradient(135deg, transparent, transparent 45%, #008000, transparent 55%, transparent 100%),
+                linear-gradient(45deg, transparent, transparent 45%, #008000, transparent 55%, transparent 100%);
+            background-size: 0.5em 0.5em;
+            background-repeat: repeat-x, repeat-x;
+            animation: wave 1s infinite linear;
+        }
+
+        @keyframes wave {
+            from{
+                background-position: 0 100%;
+            }
+            to{
+                background-position: -30px 100%;
+            }
+        }
+    }
+}

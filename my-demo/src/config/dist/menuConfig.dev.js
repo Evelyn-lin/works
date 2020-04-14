@@ -22,5 +22,8 @@ var _default = [{
 }, {
   title: '响应式表单',
   key: '/form'
+}, {
+  title: '波浪线动画',
+  key: '/wave'
 }];
 exports["default"] = _default;
