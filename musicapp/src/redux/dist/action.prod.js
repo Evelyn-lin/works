@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.searchSong=searchSong,exports.type=void 0;var type={SEARCH_SONG:"SEARCH_SONG"};function searchSong(e){return{type:type.SEARCH_SONG,value:e}}exports.type=type;

@@ -1,0 +1,17 @@
+.discover {
+  padding: 30px 200px;
+}
+.discover .ant-carousel .slick-slide {
+  text-align: center;
+  height: 320px;
+  line-height: 160px;
+  background: #364d79;
+  overflow: hidden;
+}
+.discover .ant-carousel .slick-slide img {
+  height: 320px;
+  width: 100%;
+}
+.discover .ant-carousel .slick-slide h3 {
+  color: #fff;
+}

@@ -1,0 +1,8 @@
+.main {
+  height: calc(100% - 100px);
+  background-color: #fff;
+}
+.main .main_right {
+  position: relative;
+  overflow-y: scroll;
+}
