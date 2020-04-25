@@ -1,3 +1,4 @@
+
 export const type = {
     SEARCH_SONG:'SEARCH_SONG'
 }

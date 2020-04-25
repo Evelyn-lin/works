@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var _default={getDuration:function(e){var t=new Date(e).getMinutes(),r=e%60;return(t=t<10?"0"+t:t)+":"+(r=r<10?"0"+r:r)}};exports.default=_default;

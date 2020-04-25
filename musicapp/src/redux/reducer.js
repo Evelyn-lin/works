@@ -1,18 +1,17 @@
 import { type } from './action';
-import { combineReducers } from 'redux'
 
-
-const query = (state, action) => {
+const song = (state, action) => {
+    
     switch (action.type) {
         case type.SEARCH_SONG:
             return {
                 ...state,
-                query: action.value
+                query:action.value
             }
         default:
-            return{
-                ...state
+            return {
+                ...state,
             }
     }
 }
-export default query;
+export default song;
