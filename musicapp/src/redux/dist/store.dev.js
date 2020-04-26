@@ -11,9 +11,7 @@ var _reducer = _interopRequireDefault(require("./reducer"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var initialState = {
-  menuName: ''
-};
+var initialState = {};
 
 var store = function store() {
   return (0, _redux.createStore)(_reducer["default"], initialState);

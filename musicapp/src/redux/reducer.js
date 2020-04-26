@@ -8,6 +8,13 @@ const song = (state, action) => {
                 ...state,
                 query:action.value
             }
+
+        case type.PLAY:
+            return{
+                ...state,
+                ...action.value
+            }
+
         default:
             return {
                 ...state,

@@ -1,6 +1,8 @@
 
 export const type = {
-    SEARCH_SONG:'SEARCH_SONG'
+    SEARCH_SONG:'SEARCH_SONG',
+    PLAY:'PLAY',
+    PLAY_Pause:'PLAY_Pause'
 }
 
 export function searchSong(value) {
@@ -9,3 +11,11 @@ export function searchSong(value) {
         value
     }
 }
+
+export function playSong(value) {
+    return {
+        type: type.PLAY,
+        value
+    }
+}
+

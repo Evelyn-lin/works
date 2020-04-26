@@ -20,6 +20,9 @@ var song = function song(state, action) {
         query: action.value
       });
 
+    case _action.type.PLAY:
+      return _objectSpread({}, state, {}, action.value);
+
     default:
       return _objectSpread({}, state);
   }

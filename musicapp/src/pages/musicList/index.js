@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import './index.less'
 import axios from 'axios';
 import Utils from './../../utils'
+import { playSong } from '../../redux/action';
 const { TabPane } = Tabs;
 
 
@@ -31,10 +32,11 @@ class MusicList extends React.Component {
                     obj.name = item.name;
                     obj.singer = item.artists[0].name;
                     obj.album = item.album.name;
-                    obj.time = Utils.getDuration(item.duration);
+                    obj.time = item.duration;
                     obj.mvid = item.mvid;
                     obj.id = item.id;
                     obj.img = item.artists[0].img1v1Url;
+                    // obj.duration = item.duration
                     return obj;
                 })
                 this.setState({ dataSource })
@@ -42,8 +44,23 @@ class MusicList extends React.Component {
         )
     }
 
+    play = (record) => {
+        axios.get("https://autumnfish.cn/song/url?id=" + record.id).then(
+            res => {
+                let songUrl = res.data.data[0].url;
+                let { dispatch } = this.props;
+                let msg = {
+                    index: record.index,
+                    songUrl: songUrl,
+                    duration: record.time
+                }
+                dispatch(playSong(msg));
+            }
+        )
+    }
     render() {
         const { dataSource } = this.state;
+        const { query } = this.props;
         const columns = [
             {
                 title: '序号',
@@ -60,7 +77,7 @@ class MusicList extends React.Component {
                     return <div><HeartFilled /> < VerticalAlignBottomOutlined /></div>
                 }
             }, {
-                title: 'name',
+                title: '音乐标题',
                 dataIndex: 'name',
             }, {
                 title: '歌手',
@@ -75,7 +92,7 @@ class MusicList extends React.Component {
         ]
         return (
             <div className="music_list">
-                <p>搜索“许嵩”，找到1500首单曲</p>
+                <p>搜索“{query}”，找到1500首单曲</p>
                 <Tabs defaultActiveKey="1" animated={false} tabBarGutter={50} >
                     <TabPane tab="单曲" key="1">
                         <Table
@@ -83,6 +100,13 @@ class MusicList extends React.Component {
                             columns={columns}
                             scroll={{ y: 500 }}
                             pagination={{ pageSize: 50 }}
+                            onRow={record => {
+                                return {
+                                    onDoubleClick: () => {
+                                        this.play(record)
+                                    }
+                                }
+                            }}
                         />
                     </TabPane>
                     <TabPane tab="歌手" key="2">

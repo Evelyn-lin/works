@@ -1,4 +1,51 @@
 .footer{
-    background-color: rgb(130, 185, 126);
+    background-color: #F6F6F8;
+    position: relative;
+    border-top: 1px solid #E1E1E2;
     height: 50px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+
+    button{
+        border-radius: 50%;
+        border: none;
+        background-color: #C62F2F;
+    }
+
+    .ant-btn{
+        color:#fff ;
+    }
+
+    .ant-btn:hover, .ant-btn:focus{
+        color: #fff;
+        background-color: #C62F2F;
+
+    }
+
+    .duration_start{
+        margin: 0 10px 0 100px;
+    }
+    .duration_all{
+        margin: 0 10px 0 10px;
+    }
+
+    //进度条
+    .ant-progress-inner{
+        background-color: #E6E6E8;
+        .ant-progress-success-bg, .ant-progress-bg{
+        background-color: #C62F2F;
+        }
+    }
+    
+    .standard,.lyric{
+        font-size: 12px;
+        border: 1px solid #E6E6E8 ;
+        padding:0 5px;
+        margin: 0 10px;
+    }
+    .bi{
+        margin: 10px;
+    }
 }
