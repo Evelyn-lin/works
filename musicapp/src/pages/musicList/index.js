@@ -13,15 +13,16 @@ const { TabPane } = Tabs;
 class MusicList extends React.Component {
 
     state = {
-        dataSource: []
+        dataSource: [],
+        activeIndex: -1,
     }
 
     componentWillReceiveProps(nextProps) {
         this.getList(nextProps.query);
     }
-    componentWillMount(){
-        const {query} = this.props;
-         this.getList(query);        
+    componentWillMount() {
+        const { query } = this.props;
+        this.getList(query);
     }
 
     getList = (query) => {
@@ -29,27 +30,27 @@ class MusicList extends React.Component {
             (res) => {
                 let songList = res.data.result.songs;
                 let dataSource = songList.map((item, index) => {
-
                     let obj = {};
                     obj.index = index;
                     obj.key = item.id;
                     obj.name = item.name;
                     obj.singer = item.artists[0].name;
                     obj.album = item.album.name;
-                    obj.time = item.duration;
+                    obj.time = parseInt(item.duration / 1000);
                     obj.mvid = item.mvid;
                     obj.id = item.id;
                     obj.img = item.artists[0].img1v1Url;
                     // obj.duration = item.duration
                     return obj;
                 })
-                this.setState({ dataSource })
+                this.setState({ dataSource });
             }
         )
 
     }
 
     play = (record) => {
+        this.setState({ activeIndex: record.index });
         axios.get("https://autumnfish.cn/song/url?id=" + record.id).then(
             res => {
                 let songUrl = res.data.data[0].url;
@@ -62,10 +63,19 @@ class MusicList extends React.Component {
                 dispatch(playSong(msg));
             }
         )
+
     }
+
+    addLike = (e) => {
+        let like = e.target.like;
+        e.target.like = !like;
+        e.target.src = like ? "./img/heart.svg" : "./img/heartfill.svg"
+    }
+
     render() {
-        const { dataSource } = this.state;
+        const { dataSource, activeIndex } = this.state;
         const { query } = this.props;
+        let that = this;
         const columns = [
             {
                 title: '序号',
@@ -78,8 +88,11 @@ class MusicList extends React.Component {
                 title: '操作',
                 dataIndex: 'operate',
                 width: 100,
-                render: () => {
-                    return <div><HeartFilled /> < VerticalAlignBottomOutlined /></div>
+                render() {
+                    return <div>
+                        <img style={{ marginRight: 10 }} onClick={(e) => that.addLike(e)} like="false" src="./img/heart.svg" />
+                        <img src="./img/download.svg" />
+                    </div>
                 }
             }, {
                 title: '音乐标题',
@@ -93,6 +106,10 @@ class MusicList extends React.Component {
             }, {
                 title: '时长',
                 dataIndex: 'time',
+                render(time) {
+                    let duration = Utils.getDuration(time);
+                    return duration
+                }
             },
         ]
         return (
@@ -101,10 +118,12 @@ class MusicList extends React.Component {
                 <Tabs defaultActiveKey="1" animated={false} tabBarGutter={50} >
                     <TabPane tab="单曲" key="1">
                         <Table
+                            size="small"
                             dataSource={dataSource}
                             columns={columns}
                             scroll={{ y: 500 }}
                             pagination={{ pageSize: 50 }}
+                            rowClassName={(record, index) => { return index == activeIndex ? 'table-row-active' : ""; }}
                             onRow={record => {
                                 return {
                                     onDoubleClick: () => {

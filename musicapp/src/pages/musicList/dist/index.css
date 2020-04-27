@@ -10,3 +10,9 @@
   border-radius: 3px;
   background: #C62F2F;
 }
+.music_list .table-row-active {
+  background-color: #F5F5F5;
+}
+.music_list .ant-table-row {
+  height: 5px !important;
+}

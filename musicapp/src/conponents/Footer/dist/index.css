@@ -49,3 +49,7 @@
 .footer .bi {
   margin: 10px;
 }
+.footer .sound {
+  display: flex;
+  align-items: center;
+}
