@@ -27,18 +27,27 @@
     .duration_start{
         margin: 0 10px 0 100px;
     }
+
     .duration_all{
         margin: 0 10px 0 10px;
     }
 
     //进度条
-    .ant-progress-inner{
-        background-color: #E6E6E8;
-        .ant-progress-success-bg, .ant-progress-bg{
-        background-color: #C62F2F;
-        }
+    .ant-slider-handle{
+        background-color:#C62F2F;
+        border: solid 4px #fff;
+        z-index: 3;
+    }
+
+    .ant-slider-track{
+        background-color:#C62F2F;
+        z-index: 2;
     }
     
+    .ant-slider-step{
+        background-color: #E1E1E2;
+    }   
+
     .standard,.lyric{
         font-size: 12px;
         border: 1px solid #E6E6E8 ;

@@ -29,7 +29,7 @@ export default class NavLeft extends React.Component {
           {this.renderMenuList(item.children)}
         </SubMenu>
       }
-      return <Menu.Item key={item.key} style={{fontSize:12,height:30}}>
+      return <Menu.Item key={item.key} style={{ fontSize: 12, height: 30 }}>
         {item.title}
       </Menu.Item>
     })
@@ -37,7 +37,13 @@ export default class NavLeft extends React.Component {
   render() {
     return (
       <div className="nav_left">
-        <Menu >
+        <Menu
+          onClick={item => {
+            // console.log(item);
+            
+            window.location.hash=item.key;
+          }}
+        >
           {this.props.children}
           {this.state.menuList}
         </Menu>

@@ -11,7 +11,8 @@ class Header extends React.Component {
   handleSearch = (value) => {
     let {dispatch} = this.props;
     dispatch(searchSong(value));
-    window.location.href="/#/musicList"
+
+    window.location.hash="/musicList";
   }
   render() {
     return (

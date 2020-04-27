@@ -17,7 +17,11 @@ class MusicList extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.getList(nextProps.query)
+        this.getList(nextProps.query);
+    }
+    componentWillMount(){
+        const {query} = this.props;
+         this.getList(query);        
     }
 
     getList = (query) => {
@@ -42,6 +46,7 @@ class MusicList extends React.Component {
                 this.setState({ dataSource })
             }
         )
+
     }
 
     play = (record) => {

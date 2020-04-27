@@ -2,7 +2,7 @@ import React from 'react';
 import './index.less'
 import { connect } from 'react-redux'
 import { StepBackwardOutlined, StepForwardOutlined, CaretRightOutlined, PauseOutlined } from '@ant-design/icons'
-import { Button, Progress } from 'antd';
+import { Button, Progress, Slider } from 'antd';
 import utils from '../../utils';
 
 class Footer extends React.Component {
@@ -11,16 +11,16 @@ class Footer extends React.Component {
     duration_start: 0,
     duration_all: 0,
     timer: null,
-    progress1: 0,
+    slider1: 0,
   }
 
 
 
   componentWillReceiveProps(nextProps) {
-    const {timer} = this.state;
+    const { timer } = this.state;
     clearInterval(timer);
     let duration = nextProps.duration_all ? nextProps.duration_all : 0;
-    this.setState({ play: true, duration_all: duration ,timer:null});
+    this.setState({ play: true, duration_all: duration, timer: null });
     this.getDuration();
   }
 
@@ -32,8 +32,8 @@ class Footer extends React.Component {
     let timer = setInterval(() => {
       const { duration_all } = this.state;
       let currentTime = parseInt(audio.currentTime);
-      let progress1 = currentTime*10000/duration_all;
-      this.setState({ duration_start: currentTime,progress1 });
+      let slider1 = currentTime * 10000 / duration_all;
+      this.setState({ duration_start: currentTime, slider1 });
 
     }, 1000);
     this.setState({ timer });
@@ -60,10 +60,19 @@ class Footer extends React.Component {
   goNext = () => {
 
   }
+
+  handleChange=(value)=>{
+    this.setState({slider1:value});
+    const {duration_all} = this.state;
+    let currentTime = duration_all*value/10000;
+    console.log(currentTime);
+    
+  }
+  
   render() {
     const { songUrl } = this.props;
     const { duration_all } = this.state;
-    const { play, duration_start, progress1 } = this.state;
+    const { play, duration_start, slider1 } = this.state;
     return (
       <div className="footer">
         <audio id="myAudio" src={songUrl} autoPlay />
@@ -83,7 +92,12 @@ class Footer extends React.Component {
           icon={<StepForwardOutlined />}
         />
         <span className="duration_start">{utils.getDuration(duration_start)}</span>
-        <Progress style={{ width: 900 }} size="small" percent={progress1} showInfo={false} />
+        <Slider
+          tipFormatter={null}
+          style={{ width: 900 }}
+          value={slider1}
+          onChange={(value) => this.handleChange(value)}
+        />
         <span className="duration_all">{utils.getDuration(duration_all)}</span>
         <svg className="bi bi-volume-up-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z" />
@@ -95,7 +109,7 @@ class Footer extends React.Component {
           <path fill-rule="evenodd" d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 1.596a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708l4-4a.5.5 0 0 1 .708 0z" clipRule="evenodd" />
           <path fill-rule="evenodd" d="M9.146 5.146a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0z" clipRule="evenodd" />
         </svg> */}
-        <Progress style={{ width: 80 }} size="small" percent={100} showInfo={false} />
+        <Slider tipFormatter={null} style={{ width: 70 }} />
         <span className="standard">标准</span>
         <span className="lyric">词</span>
         <svg className="bi bi-text-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

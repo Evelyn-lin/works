@@ -27,12 +27,17 @@
 .footer .duration_all {
   margin: 0 10px 0 10px;
 }
-.footer .ant-progress-inner {
-  background-color: #E6E6E8;
-}
-.footer .ant-progress-inner .ant-progress-success-bg,
-.footer .ant-progress-inner .ant-progress-bg {
+.footer .ant-slider-handle {
   background-color: #C62F2F;
+  border: solid 4px #fff;
+  z-index: 3;
+}
+.footer .ant-slider-track {
+  background-color: #C62F2F;
+  z-index: 2;
+}
+.footer .ant-slider-step {
+  background-color: #E1E1E2;
 }
 .footer .standard,
 .footer .lyric {
