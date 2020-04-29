@@ -1,10 +1,9 @@
 import React from 'react';
 import { Table } from 'antd';
 import { Tabs } from 'antd';
-import { HeartFilled, VerticalAlignBottomOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
 import './index.less'
-import axios from 'axios';
+import axios from '../axios';
 import Utils from './../../utils'
 import { playSong } from '../../redux/action';
 const { TabPane } = Tabs;
@@ -17,18 +16,23 @@ class MusicList extends React.Component {
         activeIndex: -1,
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         this.getList(nextProps.query);
     }
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         const { query } = this.props;
         this.getList(query);
     }
 
     getList = (query) => {
-        axios.get("https://autumnfish.cn/search?keywords=" + query).then(
+        axios.ajax({
+            url:"/search",
+            params:{
+                keywords:query
+            }
+        }).then(
             (res) => {
-                let songList = res.data.result.songs;
+                let songList = res.result.songs;
                 let dataSource = songList.map((item, index) => {
                     let obj = {};
                     obj.index = index;
@@ -40,7 +44,6 @@ class MusicList extends React.Component {
                     obj.mvid = item.mvid;
                     obj.id = item.id;
                     obj.img = item.artists[0].img1v1Url;
-                    // obj.duration = item.duration
                     return obj;
                 })
                 this.setState({ dataSource });
@@ -51,9 +54,14 @@ class MusicList extends React.Component {
 
     play = (record) => {
         this.setState({ activeIndex: record.index });
-        axios.get("https://autumnfish.cn/song/url?id=" + record.id).then(
+        axios.ajax({
+            url:"/song/url",
+            params:{
+                id:record.id
+            }
+        }).then(
             res => {
-                let songUrl = res.data.data[0].url;
+                let songUrl = res.data[0].url;
                 let { dispatch } = this.props;
                 let msg = {
                     index: record.index,
@@ -90,8 +98,8 @@ class MusicList extends React.Component {
                 width: 100,
                 render() {
                     return <div>
-                        <img style={{ marginRight: 10 }} onClick={(e) => that.addLike(e)} like="false" src="./img/heart.svg" />
-                        <img src="./img/download.svg" />
+                        <img alt="img" style={{ marginRight: 10 }} onClick={(e) => that.addLike(e)} like="false" src="./img/heart.svg" />
+                        <img alt="img" src="./img/download.svg" />
                     </div>
                 }
             }, {
@@ -123,7 +131,7 @@ class MusicList extends React.Component {
                             columns={columns}
                             scroll={{ y: 500 }}
                             pagination={{ pageSize: 50 }}
-                            rowClassName={(record, index) => { return index == activeIndex ? 'table-row-active' : ""; }}
+                            rowClassName={(record, index) => { return index === activeIndex ? 'table-row-active' : ""; }}
                             onRow={record => {
                                 return {
                                     onDoubleClick: () => {

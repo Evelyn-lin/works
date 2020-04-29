@@ -13,17 +13,18 @@ export default class CardList extends Component {
             <Card
                 bordered={false}
                 title={title}
-                style={{ height: 290 }}
                 className="cardlist"
             >
                 <ul>
                     {
                         imgList.map((item, index) => (
 
-                            <li  key={index} style={{ width }}>
-                                <img src={item.src} />
-                                <span>{item.description}</span>
-                            </li>
+                            <a key={index} >
+                                <li  style={{ width }}>
+                                    <img style={{ width }} alt="图片" src={item.coverImgUrl} />
+                                    <span>{item.name}</span>
+                                </li>
+                            </a>
 
                         ))
                     }

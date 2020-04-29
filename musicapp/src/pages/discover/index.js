@@ -1,8 +1,9 @@
 import React from 'react';
-import { Carousel, Tabs, Select, Menu } from 'antd';
+import {Tabs} from 'antd';
 import Recomand from './recomand'
 import SongList from './songlist'
 import SongRadio from './radio'
+import NewSongs from './newSongs'
 import Rank from './rank'
 
 import './index.less'
@@ -31,7 +32,7 @@ export default class Discover extends React.Component {
             Content of Tab Pane 3
           </TabPane>
           <TabPane tab="最新音乐" key="6">
-            Content of Tab Pane 3
+            <NewSongs/>
           </TabPane>
         </Tabs>
       </div>

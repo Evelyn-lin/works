@@ -1,23 +1,33 @@
 import React, { Component } from 'react'
 import { Card } from 'antd'
-import axios from 'axios'
+import axios from '../../axios'
 import './index.less'
 
 
 export default class Rank extends Component {
 
-    componentDidMount() {
+    state = {
+        playList: []
+    }
+
+    componentWillMount() {
         this.requestList();
     }
 
     requestList = () => {
-        axios.get('http://mobilecdnbj.kugou.com/api/v3/tag/specialList?plat=0&page=1&tagid=12&pagesize=30&ugc=1&id=68&sort=2').then(res=>{
-            console.log(res);
-            
+        axios.ajax({
+            url: '/top/playlist/highquality',
+            params: {
+                limit: 5,
+                cat: '全部'
+            }
+        }).then(res => {
+            this.setState({ playList: res.playlists })
         })
     }
 
     render() {
+        const {playList} = this.state;
         return (
             <div className="rank">
                 <Card
@@ -26,7 +36,7 @@ export default class Rank extends Component {
                     style={{ height: 290 }}
                     className="card"
                 >
-                    <Item />
+                    <Item playList={playList}/>
                 </Card>
             </div>
         )
@@ -41,21 +51,7 @@ class Item extends Component {
         return `${m}月${d}日更新`
     }
     render() {
-        const list = [
-            {
-                name: 'asdas',
-                singer: 'sdas'
-            }, {
-                name: 'asdas',
-                singer: 'sdas'
-            }, {
-                name: 'asdas',
-                singer: 'sdas'
-            }, {
-                name: 'asdas',
-                singer: 'sdas'
-            },
-        ]
+        const { playList } = this.props;
         return (
             <div className="rank_item">
                 <div className="rank_item_title">
@@ -67,7 +63,7 @@ class Item extends Component {
                 </div>
                 <ul className="rank_item_content">
                     {
-                        list.map((item, index) => (
+                        playList.map((item, index) => (
                             <li key={index}>
                                 <span>{index}</span>
                                 <span>{item.name}</span>

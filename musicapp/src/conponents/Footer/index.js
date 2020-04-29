@@ -2,7 +2,7 @@ import React from 'react';
 import './index.less'
 import { connect } from 'react-redux'
 import { StepBackwardOutlined, StepForwardOutlined, CaretRightOutlined, PauseOutlined } from '@ant-design/icons'
-import { Button, Progress, Slider } from 'antd';
+import { Button, Slider } from 'antd';
 import utils from '../../utils';
 
 class Footer extends React.Component {
@@ -14,8 +14,12 @@ class Footer extends React.Component {
     mute: false,
   }
 
+  componentDidMount(){
+    let audio = document.querySelector('#myAudio');
+    this.setState({audio });
 
-  componentWillReceiveProps(nextProps) {
+  }
+  UNSAFE_componentWillReceiveProps(nextProps) {
     let audio = document.querySelector('#myAudio');
     //获取音频当前时间
     let currentTime = audio.currentTime;
@@ -23,10 +27,14 @@ class Footer extends React.Component {
     const { timer } = this.state;
     clearInterval(timer);
     this.setState({ play: true, timer: null, currentTime, audio });
+
   }
 
   play = () => {
     const { play, audio } = this.state;
+    if(!audio.src) {
+      return false
+    };
     this.setState({ play: !play });
     if (audio.paused) {
       audio.play();
@@ -74,6 +82,7 @@ class Footer extends React.Component {
     const { songUrl } = this.props;
     const { duration, mute } = this.state;
     const { play, currentTime, slider1 } = this.state;
+
     return (
       <div className="footer">
         <audio id="myAudio" src={songUrl} autoPlay onTimeUpdate={(e) => this.changeTime(e)} />
@@ -101,8 +110,8 @@ class Footer extends React.Component {
         />
         <span className="duration_all">{utils.getDuration(duration)}</span>
         <div className="sound" onClick={this.closeSound}>
-          <img style={{ display: mute ? 'none' : 'inline' }} src="./img/sound.svg" />
-          <img style={{ display: mute ? 'inline' : 'none' }} src="./img/mute.svg" />
+          <img alt="img" style={{ display: mute ? 'none' : 'inline' }} src="./img/sound.svg" />
+          <img alt="img" style={{ display: mute ? 'inline' : 'none' }} src="./img/mute.svg" />
         </div>
         <Slider
           tipFormatter={null}

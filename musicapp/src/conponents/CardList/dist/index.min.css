@@ -1,1 +1,1 @@
-.cardlist{height:600px}.cardlist ul{list-style:none;padding:0;display:flex;justify-content:center}.cardlist ul li{padding:10px}.cardlist ul li img{display:block;width:100%}
+.cardlist .ant-card-body,.cardlist .ant-card-head{padding:0}.cardlist ul{list-style:none;width:880px;padding:0;display:flex;flex-wrap:wrap;justify-content:space-between}.cardlist ul li{margin-bottom:50px}.cardlist ul li img{display:block;width:100%}

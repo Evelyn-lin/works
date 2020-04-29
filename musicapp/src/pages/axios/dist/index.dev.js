@@ -5,17 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
-
-var _jsonp = _interopRequireDefault(require("jsonp"));
+var _react = require("react");
 
 var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -35,54 +29,38 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var index =
+var Axios =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(index, _Component);
+  _inherits(Axios, _Component);
 
-  function index() {
-    _classCallCheck(this, index);
+  function Axios() {
+    _classCallCheck(this, Axios);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(index).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(Axios).apply(this, arguments));
   }
 
-  _createClass(index, null, [{
-    key: "jsonp",
-    value: function jsonp(options) {
-      return new Promise(function (resolve, reject) {
-        (0, _jsonp["default"])(options.url, {
-          param: 'callback'
-        }, function (err, response) {
-          if (response.status == 'success') {
-            resolve(response);
-          } else {
-            reject(response.messsage);
-          }
-        });
-      });
-    }
-  }, {
+  _createClass(Axios, null, [{
     key: "ajax",
     value: function ajax(options) {
       return new Promise(function (resolve, reject) {
-        _axios["default"].get({
-          url: options.url,
+        (0, _axios["default"])({
           method: 'get',
-          params: options.data && options.data.params || ''
-        }).then(function (response) {
-          if (response.status == '200') {
-            var res = response.data;
-            resolve(res);
+          baseURL: 'https://autumnfish.cn',
+          url: options.url,
+          params: options.params
+        }).then(function (response, err) {
+          if (response.status && response.status === 200) {
+            resolve(response.data);
           } else {
-            var _res = response.data;
-            reject(_res);
+            reject(err);
           }
         });
       });
     }
   }]);
 
-  return index;
+  return Axios;
 }(_react.Component);
 
-exports["default"] = index;
+exports["default"] = Axios;
