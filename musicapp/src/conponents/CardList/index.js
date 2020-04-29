@@ -13,8 +13,8 @@ export default class CardList extends Component {
             <Card
                 bordered={false}
                 title={title}
-                style={{ height: 200 }}
-                className="card"
+                style={{ height: 290 }}
+                className="cardlist"
             >
                 <ul>
                     {

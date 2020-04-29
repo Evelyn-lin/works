@@ -1,5 +1,11 @@
 .discover {
-  padding: 30px 200px;
+  margin: 0 200px 50px;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.discover .discover_header .ant-tabs-nav:first-child {
+  margin-left: 200px;
 }
 .discover .ant-carousel .slick-slide {
   text-align: center;
@@ -14,4 +20,9 @@
 }
 .discover .ant-carousel .slick-slide h3 {
   color: #fff;
+}
+.discover .ant-tabs {
+  width: 897px;
+  height: 600px;
+  overflow-y: scroll;
 }

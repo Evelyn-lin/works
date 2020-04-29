@@ -29,7 +29,7 @@ export default class NavLeft extends React.Component {
           {this.renderMenuList(item.children)}
         </SubMenu>
       }
-      return <Menu.Item key={item.key} style={{ fontSize: 12, height: 30 }}>
+      return <Menu.Item key={item.key} style={{ fontSize: 12, height: 30 ,lineHeight:'30px'}}>
         {item.title}
       </Menu.Item>
     })

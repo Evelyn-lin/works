@@ -1,0 +1,51 @@
+.rank{
+    
+    .rank_item{
+        width: 280px;
+        height: 300px;
+        border: 1px solid #F5F5F7;
+
+        .rank_item_title{
+            background-color:#6094E5;
+            height: 80px;
+            color: #fff;
+            font-size: 24px;
+            
+            i:first-child{
+                font-size: 44px;
+                padding: 0 5px 0 20px;
+                line-height: 80px;
+                vertical-align: middle;
+            }
+
+            span{
+                font-size: 12px;
+                margin-left: -46px;
+                position: relative;
+                top: 20px;
+                opacity: .5;
+            }
+            
+        }
+
+        .rank_item_content{
+            list-style: none;
+            padding: 0;
+            
+            li{
+                background-color: #FAFAFA;
+                padding: 2px 10px;
+                display: flex;
+                justify-content: space-between;
+
+                span:nth-child(2){
+                    margin-left: -120px;
+                }
+            }
+            li:nth-child(odd){
+                background-color: #F5F5F7;
+            }
+            
+        }
+    }
+}
