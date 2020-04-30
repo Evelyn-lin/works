@@ -22,6 +22,16 @@
                 .song_item_mid{
                     display: inline-block;
                 }
+
+                .song_item_left{
+                    span:first-child{
+                        margin-right: 20px;
+                    }
+                    .sound{
+                        display: none;
+                    }
+                }
+
                 .song_item_mid{
                     position: absolute;
                     left:300px;
@@ -32,7 +42,7 @@
                     }
                 }
 
-                img{
+                .album{
                     width: 50px;
                     margin: 0 10px;
                 }
@@ -40,9 +50,24 @@
                     float: right;
                 }
             }
+
             li:nth-child(odd){
                 background-color: #F5F5F7;
             }
+            
+            .active{
+                background-color: #E3E3E5;
+                .song_item_left{
+                    span:first-child{
+                        display: none;
+                    }
+                    .sound{
+                        display: inline-block;
+                        margin-right: 20px;
+                    }
+                }
+            }
+            
             
         }
     }

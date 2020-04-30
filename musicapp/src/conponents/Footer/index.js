@@ -104,7 +104,7 @@ class Footer extends React.Component {
         <span className="duration_start">{utils.getDuration(currentTime)}</span>
         <Slider
           tipFormatter={null}
-          style={{ width: 900 }}
+          style={{ width:830 }}
           value={slider1}
           onChange={(value) => this.handleChangeSlider1(value)}
         />
@@ -115,6 +115,7 @@ class Footer extends React.Component {
         </div>
         <Slider
           tipFormatter={null}
+          defaultValue={50}
           style={{ width: 70 }}
           onChange={(value) => this.handleChangeSlider2(value)}
         />

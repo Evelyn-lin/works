@@ -19,6 +19,12 @@
 .new_songs .songs_item .songs_item_content li .song_item_mid {
   display: inline-block;
 }
+.new_songs .songs_item .songs_item_content li .song_item_left span:first-child {
+  margin-right: 20px;
+}
+.new_songs .songs_item .songs_item_content li .song_item_left .sound {
+  display: none;
+}
 .new_songs .songs_item .songs_item_content li .song_item_mid {
   position: absolute;
   left: 300px;
@@ -28,7 +34,7 @@
   position: absolute;
   left: 150px;
 }
-.new_songs .songs_item .songs_item_content li img {
+.new_songs .songs_item .songs_item_content li .album {
   width: 50px;
   margin: 0 10px;
 }
@@ -37,4 +43,14 @@
 }
 .new_songs .songs_item .songs_item_content li:nth-child(odd) {
   background-color: #F5F5F7;
+}
+.new_songs .songs_item .songs_item_content .active {
+  background-color: #E3E3E5;
+}
+.new_songs .songs_item .songs_item_content .active .song_item_left span:first-child {
+  display: none;
+}
+.new_songs .songs_item .songs_item_content .active .song_item_left .sound {
+  display: inline-block;
+  margin-right: 20px;
 }
