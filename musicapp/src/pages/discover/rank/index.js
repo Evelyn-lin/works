@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Card } from 'antd'
-// import axios from '../../axios'
 import axios from 'axios'
 import './index.less'
 
@@ -8,7 +7,7 @@ import './index.less'
 export default class Rank extends Component {
 
     state = {
-        playList: []
+        playList: null
     }
 
     componentWillMount() {
@@ -16,19 +15,17 @@ export default class Rank extends Component {
     }
 
     requestList = () => {
-        axios.ajax({
-            url: '/top/playlist/highquality',
-            params: {
-                limit: 5,
-                cat: '全部'
-            }
+
+        axios({
+            url: './json/list.json',
+            method: 'get'
         }).then(res => {
-            this.setState({ playList: res.playlists })
+            this.setState({ playList: res.data.playlist.tracks })
         })
     }
 
     render() {
-        const {playList} = this.state;
+        const { playList } = this.state;
         return (
             <div className="rank">
                 <Card
@@ -37,7 +34,12 @@ export default class Rank extends Component {
                     style={{ height: 290 }}
                     className="card"
                 >
-                    <Item playList={playList}/>
+                    <Item playList={playList} />
+                    <Item playList={playList} />
+                    <Item playList={playList} />
+                    <Item playList={playList} />
+                    <Item playList={playList} />
+                    <Item playList={playList} />
                 </Card>
             </div>
         )
@@ -51,8 +53,27 @@ class Item extends Component {
         let d = new Date().getDate();
         return `${m}月${d}日更新`
     }
-    render() {
+
+    getLis = () => {
         const { playList } = this.props;
+        if (playList) {
+            let lis = playList.map((item, index) => {
+                if(index<8){
+                    return(
+                        <li key={index}>
+                            <span>{index+1}</span>
+                            <span>{item.name}</span>
+                            <span>{item.ar[0].name}</span>
+                        </li>
+                    )
+                }
+            })
+
+            return lis
+        }
+    }
+
+    render() {
         return (
             <div className="rank_item">
                 <div className="rank_item_title">
@@ -63,15 +84,7 @@ class Item extends Component {
                     </div>
                 </div>
                 <ul className="rank_item_content">
-                    {
-                        playList.map((item, index) => (
-                            <li key={index}>
-                                <span>{index}</span>
-                                <span>{item.name}</span>
-                                <span>{item.singer}</span>
-                            </li>
-                        ))
-                    }
+                    {this.getLis()}
                 </ul>
             </div>
         )

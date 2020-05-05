@@ -4,7 +4,7 @@
   position: relative;
   overflow: hidden;
 }
-.discover .discover_header .ant-tabs-nav:first-child {
+.discover .discover_header > .ant-tabs-top-bar {
   margin-left: 200px;
 }
 .discover .ant-carousel .slick-slide {
@@ -21,7 +21,7 @@
 .discover .ant-carousel .slick-slide h3 {
   color: #fff;
 }
-.discover .ant-tabs {
+.discover > .ant-tabs {
   width: 897px;
   height: 600px;
   overflow-y: scroll;
